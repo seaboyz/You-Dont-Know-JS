@@ -13,8 +13,16 @@ Let's practice working with value types and comparisons (Chapter 4, Pillar 3) wh
 const dayStart = "07:30";
 const dayEnd = "17:45";
 
-function scheduleMeeting(startTime,durationMinutes) {
-    // ..TODO..
+function scheduleMeeting(startTime /* "hh:mm" */, durationMinutes) {
+	function timeToMinutes(time) {
+		var [hour, minute] = time.split(":");
+		return hour * 60 + minute * 1;
+	}
+
+	return (
+		timeToMinutes(startTime) >= timeToMinutes(dayStart) &&
+		timeToMinutes(startTime) + durationMinutes * 1 <= timeToMinutes(dayEnd)
+	);
 }
 
 scheduleMeeting("7:00",15);     // false
