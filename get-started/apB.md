@@ -13,7 +13,7 @@ Let's practice working with value types and comparisons (Chapter 4, Pillar 3) wh
 const dayStart = "07:30";
 const dayEnd = "17:45";
 
-function scheduleMeeting(startTime /* "hh:mm" */, durationMinutes/* number */) {
+function scheduleMeeting(startTime /* "hh:mm" */, durationMinutes /* number */) {
 	function timeToMinutes(time) {
 		var [hour, minute] = time.split(":");
 		return hour * 60 + minute * 1;
