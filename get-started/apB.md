@@ -44,7 +44,25 @@ The `range(..)` function takes a number as its first argument, representing the 
 
 ```js
 function range(start,end) {
-    // ..TODO..
+    function getRange(start, end) {
+		var arr = [];
+		for (var i = start; i <= end; i++) {
+			arr.push(i);
+		}
+		return arr;
+	}
+
+    start = Number(start) || 0;
+
+	if (end === undefined) {
+		return function getEnd(end) {
+			return getRange(start, end);
+		};
+	}
+
+	end = Number(end) || 0;
+
+	return getRange(start, end);
 }
 
 range(3,3);    // [3]
