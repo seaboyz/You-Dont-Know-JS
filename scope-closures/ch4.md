@@ -159,7 +159,7 @@ That's what I mean by *pure*. But unfortunately, that won't always be true of al
 
 Recall the discussion of shadowing (and global unshadowing) from Chapter 3, where one variable declaration can override and prevent access to a declaration of the same name from an outer scope.
 
-An unusual consequence of the difference between a global variable and a global property of the same name is that, within just the global scope itself, a global object property can be shadowed by a global variable:
+An unusual consequence of the difference between a ***global variable*** and a ***global property of the same name*** is that, ***within just the global scope itself, a global object property can be shadowed by a global variable***:
 
 ```js
 window.something = 42;
