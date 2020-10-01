@@ -1,7 +1,7 @@
 # You Don't Know JS Yet: Scope & Closures - 2nd Edition
 # Chapter 2: Illustrating Lexical Scope
 
-In Chapter 1, we explored how scope is ####determined#### during code compilation, a model called "lexical scope." The term "lexical" refers to the first stage of compilation (lexing/parsing).
+In Chapter 1, we explored how scope is ###determined### during code compilation, a model called "lexical scope." The term "lexical" refers to the first stage of compilation (lexing/parsing).
 
 To properly *reason* about our programs, it's important to have a solid conceptual foundation of how scope works. If we rely on guesses and intuition, we may accidentally get the right answers some of the time, but many other times we're far off. This isn't a recipe for success.
 
