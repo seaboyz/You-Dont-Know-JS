@@ -98,7 +98,7 @@ Please beware: leveraging the technique I'm about to describe is not very good p
 
 It *is* possible to access a global variable from a scope where that variable has been shadowed, but not through a typical lexical identifier reference.
 
-In the global scope (RED(1)), `var` declarations and `function` declarations also expose themselves as properties (of the same name as the identifier) on the *global object*—essentially an object representation of the global scope. If you've written JS for a browser environment, you probably recognize the global object as `window`. That's not *entirely* accurate, but it's good enough for our discussion. In the next chapter, we'll explore the global scope/object topic more.
+In the global scope (RED(1)), `var` declarations and `function` declarations also expose themselves as properties (of the same name as the identifier) on the ***global object*—essentially an object representation of the global scope.*** If you've written JS for a browser environment, you probably recognize the global object as `window`. That's not *entirely* accurate, but it's good enough for our discussion. In the next chapter, we'll explore the global scope/object topic more.
 
 Consider this program, specifically executed as a standalone .js file in a browser environment:
 
