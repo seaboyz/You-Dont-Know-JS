@@ -1,7 +1,7 @@
 # You Don't Know JS Yet: Scope & Closures - 2nd Edition
 # Chapter 2: Illustrating Lexical Scope
 
-In Chapter 1, we explored how scope is ###determined### during code compilation, a model called "lexical scope." The term "lexical" refers to the first stage of compilation (lexing/parsing).
+In Chapter 1, we explored how scope is ***determined*** during code compilation, a model called "lexical scope." The term "lexical" refers to the first stage of compilation (lexing/parsing).
 
 To properly *reason* about our programs, it's important to have a solid conceptual foundation of how scope works. If we rely on guesses and intuition, we may accidentally get the right answers some of the time, but many other times we're far off. This isn't a recipe for success.
 
@@ -108,7 +108,7 @@ Let's now meet the members of the JS engine that will have conversations as they
 
 * *Scope Manager*: another friend of *Engine*; collects and maintains a lookup list of all the declared variables/identifiers, and enforces a set of rules as to how these are accessible to currently executing code.
 
-For you to *fully understand* how JavaScript works, you need to begin to *think* like *Engine* (and friends) think, ask the questions they ask, and answer their questions likewise.
+***For you to *fully understand* how JavaScript works, you need to begin to *think* like *Engine* (and friends) think, ask the questions they ask, and answer their questions likewise***.
 
 To explore these conversations, recall again our running program example:
 
@@ -144,7 +144,7 @@ Once *Compiler* gets to code generation, there's more detail to consider than ma
 
 Here's the steps *Compiler* will follow to handle that statement:
 
-1. Encountering `var students`, *Compiler* will ask *Scope Manager* to see if a variable named `students` already exists for that particular scope bucket. If so, *Compiler* would ignore this declaration and move on. Otherwise, *Compiler* will produce code that (at execution time) asks *Scope Manager* to create a new variable called `students` in that scope bucket.
+1. ***Encountering `var students`, *Compiler* will ask *Scope Manager* to see if a variable named `students` already exists for that particular scope bucket. If so, *Compiler* would ignore this declaration and move on. Otherwise, *Compiler* will produce code that (at execution time) asks *Scope Manager* to create a new variable called `students` in that scope bucket***.
 
 2. *Compiler* then produces code for *Engine* to later execute, to handle the `students = []` assignment. The code *Engine* runs will first ask *Scope Manager* if there is a variable called `students` accessible in the current scope bucket. If not, *Engine* keeps looking elsewhere (see "Nested Scope" below). Once *Engine* finds a variable, it assigns the reference of the `[ .. ]` array to it.
 
@@ -212,7 +212,7 @@ To review and summarize how a statement like `var students = [ .. ]` is processe
 
 ## Nested Scope
 
-When it comes time to execute the `getStudentName()` function, *Engine* asks for a *Scope Manager* instance for that function's scope, and it will then proceed to look up the parameter (`studentID`) to assign the `73` argument value to, and so on.
+***When it comes time to execute the `getStudentName()` function, *Engine* asks for a *Scope Manager* instance for that function's scope***, and it will then proceed to look up the parameter (`studentID`) to assign the `73` argument value to, and so on.
 
 The function scope for `getStudentName(..)` is nested inside the global scope. The block scope of the `for`-loop is similarly nested inside that function scope. Scopes can be lexically nested to any arbitrary depth as the program defines.
 
