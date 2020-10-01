@@ -176,6 +176,8 @@ The conversation is a question-and-answer exchange, where **Compiler** asks the 
 
 Later, when it comes to execution of the program, the conversation will shift to *Engine* and *Scope Manager*, and might play out like this:
 
+#### Asignment happens at the execution phase (function asignment and varible asighment) including initialization of undefined.
+
 > ***Engine***: Hey, *Scope Manager* (of the global scope), before we begin, can you look up the identifier `getStudentName` so I can assign this function to it?
 
 > ***(Global) Scope Manager***: Yep, here's the variable.
