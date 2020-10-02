@@ -30,9 +30,9 @@ The term most commonly used for a variable being visible from the beginning of i
 
 But hoisting alone doesn't fully answer the question. We can see an identifier called `greeting` from the beginning of the scope, but why can we **call** the `greeting()` function before it's been declared?
 
-In other words, how does the variable `greeting` have any value (the function reference) assigned to it, from the moment the scope starts running? The answer is a special characteristic of formal `function` declarations, called *function hoisting*. When a `function` declaration's name identifier is registered at the top of its scope, it's additionally auto-initialized to that function's reference. That's why the function can be called throughout the entire scope!
+In other words, how does the variable `greeting` have any value (the function reference) assigned to it, from the moment the scope starts running? The answer is a special characteristic of formal `function` declarations, called *function hoisting*. ***When a `function` declaration's name identifier is registered at the top of its scope, it's additionally auto-initialized to that function's reference.*** That's why the function can be called throughout the entire scope!
 
-One key detail is that both *function hoisting* and `var`-flavored *variable hoisting* attach their name identifiers to the nearest enclosing **function scope** (or, if none, the global scope), not a block scope.
+One key detail is that both *function hoisting* and `var`-flavored *variable hoisting* attach their name identifiers to the nearest enclosing **function scope** (or, if none, the ***global scope***), not ***a block scope***.
 
 | NOTE: |
 | :--- |
@@ -57,11 +57,11 @@ Notice that the error is **not** a `ReferenceError`. JS isn't telling us that it
 
 But what does `greeting` hold, if not the function reference?
 
-In addition to being hoisted, variables declared with `var` are also automatically initialized to `undefined` at the beginning of their scope—again, the nearest enclosing function, or the global. Once initialized, they're available to be used (assigned to, retrieved from, etc.) throughout the whole scope.
+***In addition to being hoisted, variables declared with `var` are also automatically initialized to `undefined` at the beginning of their scope—again, the nearest enclosing function, or the global***. Once initialized, they're available to be used (assigned to, retrieved from, etc.) throughout the whole scope.
 
 So on that first line, `greeting` exists, but it holds only the default `undefined` value. It's not until line 4 that `greeting` gets assigned the function reference.
 
-Pay close attention to the distinction here. A `function` declaration is hoisted **and initialized to its function value** (again, called *function hoisting*). A `var` variable is also hoisted, and then auto-initialized to `undefined`. Any subsequent `function` expression assignments to that variable don't happen until that assignment is processed during runtime execution.
+Pay close attention to the distinction here. ***A `function` declaration is hoisted **and initialized to its function value (again, called *function hoisting*). A `var` variable is also hoisted, and then auto-initialized to `undefined`***. Any subsequent `function` expression assignments to that variable don't happen until that assignment is processed during runtime execution.
 
 In both cases, the name of the identifier is hoisted. But the function reference association isn't handled at initialization time (beginning of the scope) unless the identifier was created in a formal `function` declaration.
 
@@ -114,7 +114,7 @@ function greeting() {
 var studentName;
 ```
 
-The "rule" of the hoisting metaphor is that function declarations are hoisted first, then variables are hoisted immediately after all the functions. Thus, the hoisting story suggests that program is *re-arranged* by the JS engine to look like this:
+***The "rule" of the hoisting metaphor is that function declarations are hoisted first, then variables are hoisted immediately after all the functions.*** Thus, the hoisting story suggests that program is *re-arranged* by the JS engine to look like this:
 
 ```js
 function greeting() {
@@ -265,13 +265,13 @@ When *Compiler* asks *Scope Manager* about a declaration, if that identifier has
 
 The `const` keyword is more constrained than `let`. Like `let`, `const` cannot be repeated with the same identifier in the same scope. But there's actually an overriding technical reason why that sort of "re-declaration" is disallowed, unlike `let` which disallows "re-declaration" mostly for stylistic reasons.
 
-The `const` keyword requires a variable to be initialized, so omitting an assignment from the declaration results in a `SyntaxError`:
+***The `const` keyword requires a variable to be initialized***, so omitting an assignment from the declaration results in a `SyntaxError`:
 
 ```js
 const empty;   // SyntaxError
 ```
 
-`const` declarations create variables that cannot be re-assigned:
+***`const` declarations create variables that cannot be re-assigned***:
 
 ```js
 const studentName = "Frank";
@@ -314,7 +314,7 @@ while (keepGoing) {
 
 Is `value` being "re-declared" repeatedly in this program? Will we get errors thrown? No.
 
-All the rules of scope (including "re-declaration" of `let`-created variables) are applied *per scope instance*. In other words, each time a scope is entered during execution, everything resets.
+All the rules of scope (including "re-declaration" of `let`-created variables) are applied ***per scope instance***. In other words, ***each time a scope is entered during execution, everything resets***.
 
 Each loop iteration is its own new scope instance, and within each scope instance, `value` is only being declared once. So there's no attempted "re-declaration," and thus no error. Before we consider other loop forms, what if the `value` declaration in the previous snippet were changed to a `var`?
 
@@ -328,9 +328,9 @@ while (keepGoing) {
 }
 ```
 
-Is `value` being "re-declared" here, especially since we know `var` allows it? No. Because `var` is not treated as a block-scoping declaration (see Chapter 6), it attaches itself to the global scope. So there's just one `value` variable, in the same scope as `keepGoing` (global scope, in this case). No "re-declaration" here, either!
+***Is `value` being "re-declared" here, especially since we know `var` allows it? No. Because `var` is not treated as a block-scoping declaration (see Chapter 6), it attaches itself to the global scope. So there's just one `value` variable, in the same scope as `keepGoing` (global scope, in this case). No "re-declaration" here, either!***
 
-One way to keep this all straight is to remember that `var`, `let`, and `const` keywords are effectively *removed* from the code by the time it starts to execute. They're handled entirely by the compiler.
+***One way to keep this all straight is to remember that `var`, `let`, and `const` keywords are effectively *removed* from the code by the time it starts to execute. They're handled entirely by the compiler.***
 
 If you mentally erase the declarator keywords and then try to process the code, it should help you decide if and when (re-)declarations might occur.
 
