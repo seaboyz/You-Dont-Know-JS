@@ -211,7 +211,7 @@ Beware that using an IIFE to define a scope can have some unintended consequence
 
 For example, a `return` statement in some piece of code would change its meaning if an IIFE is wrapped around it, because now the `return` would refer to the IIFE's function. Non-arrow function IIFEs also change the binding of a `this` keyword—more on that in the *Objects & Classes* book. And statements like `break` and `continue` won't operate across an IIFE function boundary to control an outer loop or block.
 
-So, if the code you need to wrap a scope around has `return`, `this`, `break`, or `continue` in it, an IIFE is probably not the best approach. In that case, you might look to create the scope with a block instead of a function.
+***So, if the code you need to wrap a scope around has `return`, `this`, `break`, or `continue` in it, an IIFE is probably not the best approach. In that case, you might look to create the scope with a block instead of a function.***
 
 ## Scoping with Blocks
 
@@ -242,15 +242,15 @@ A block only becomes a scope if necessary, to contain its block-scoped declarati
 // 0 2 4
 ```
 
-Not all `{ .. }` curly-brace pairs create blocks (and thus are eligible to become scopes):
+***Not all `{ .. }` curly-brace pairs create blocks (and thus are eligible to become scopes):
 
-* Object literals use `{ .. }` curly-brace pairs to delimit their key-value lists, but such object values are **not** scopes.
+* ***Object literals use `{ .. }` curly-brace pairs to delimit their key-value lists, but such object values are **not** scopes.
 
-* `class` uses `{ .. }` curly-braces around its body definition, but this is not a block or scope.
+* ***`class` uses `{ .. }` curly-braces around its body definition, but this is not a block or scope.
 
-* A `function` uses `{ .. } ` around its body, but this is not technically a block—it's a single statement for the function body. It *is*, however, a (function) scope.
+* ***A `function` uses `{ .. } ` around its body, but this is not technically a block—it's a single statement for the function body. It *is*, however, a (function) scope.
 
-* The `{ .. }` curly-brace pair on a `switch` statement (around the set of `case` clauses) does not define a block/scope.
+* ***The `{ .. }` curly-brace pair on a `switch` statement (around the set of `case` clauses) does not define a block/scope.
 
 Other than such non-block examples, a `{ .. }` curly-brace pair can define a block attached to a statement (like an `if` or `for`), or stand alone by itself—see the outermost `{ .. }` curly brace pair in the previous snippet. An explicit block of this sort—if it has no declarations, it's not actually a scope—serves no operational purpose, though it can still be useful as a semantic signal.
 
@@ -322,7 +322,7 @@ Let's first identify the scopes and their identifiers:
 
 So why put `curMonth` in an explicit block scope instead of just alongside `nextMonth` and `year` in the top-level function scope? Because `curMonth` is only needed for those first two statements; at the function scope level it's over-exposed.
 
-This example is small, so the hazards of over-exposing `curMonth` are pretty limited. But the benefits of the POLE principle are best achieved when you adopt the mindset of minimizing scope exposure by default, as a habit. If you follow the principle consistently even in the small cases, it will serve you more as your programs grow.
+***This example is small, so the hazards of over-exposing `curMonth` are pretty limited. But the benefits of the POLE principle are best achieved when you adopt the mindset of minimizing scope exposure by default, as a habit. If you follow the principle consistently even in the small cases, it will serve you more as your programs grow***.
 
 Let's now look at an even more substantial example:
 
