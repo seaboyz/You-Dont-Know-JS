@@ -65,6 +65,7 @@ var a = 2;
 
 foo(); // 2
 ```
+(***node is a different story, because the outermost scope of a js file is not the global scope, so any varible declared at the outermost level is not in the global object***)
 
 The first thing to note, if you were not already aware, is that variables declared in the global scope, as `var a = 2` is, are synonymous with global-object properties of the same name. They're not copies of each other, they *are* each other. Think of it as two sides of the same coin.
 
