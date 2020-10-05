@@ -73,7 +73,7 @@ Secondly, we see that when `foo()` is called, `this.a` resolves to our global va
 
 How do we know that the *default binding* rule applies here? We examine the call-site to see how `foo()` is called. In our snippet, `foo()` is called with a plain, un-decorated function reference. None of the other rules we will demonstrate will apply here, so the *default binding* applies instead.
 
-If `strict mode` is in effect, the global object is not eligible for the *default binding*, so the `this` is instead set to `undefined`.
+***If `strict mode` is in effect, the global object is not eligible for the *default binding*, so the `this` is instead set to `undefined`***.
 
 ```js
 function foo() {
