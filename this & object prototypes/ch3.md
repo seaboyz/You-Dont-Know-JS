@@ -109,7 +109,7 @@ The same sort of coercion happens between the number literal primitive `42` and 
 
 As mentioned earlier, the contents of an object consist of values (any type) stored at specifically named *locations*, which we call properties.
 
-It's important to note that while we say "contents" which implies that these values are *actually* stored inside the object, that's merely an appearance. The engine stores values in implementation-dependent ways, and may very well not store them *in* some object container. What *is* stored in the container are these property names, which act as pointers (technically, *references*) to where the values are stored.
+It's important to note that while we say "contents" which implies that these values are *actually* stored inside the object, that's merely an appearance. The engine stores values in implementation-dependent ways, and may very well not store them *in* some object container. ***What *is* stored in the container are these property names, which act as pointers (technically, *references*) to where the values are stored.***
 
 Consider:
 
@@ -196,7 +196,7 @@ Technically, functions never "belong" to objects, so saying that a function that
 
 It *is* true that some functions have `this` references in them, and that *sometimes* these `this` references refer to the object reference at the call-site. But this usage really does not make that function any more a "method" than any other function, as `this` is dynamically bound at run-time, at the call-site, and thus its relationship to the object is indirect, at best.
 
-Every time you access a property on an object, that is a **property access**, regardless of the type of value you get back. If you *happen* to get a function from that property access, it's not magically a "method" at that point. There's nothing special (outside of possible implicit `this` binding as explained earlier) about a function that comes from a property access.
+Every time you access a property on an object, that is a **property access**, regardless of the type of value you get back. If you *happen* to get a function from that property access, it's not magically a "method" at that point. ***There's nothing special (outside of possible implicit `this` binding as explained earlier) about a function that comes from a property access.***
 
 For instance:
 
@@ -224,7 +224,7 @@ myObject.someFoo;	// function foo(){..}
 
 The safest conclusion is probably that "function" and "method" are interchangeable in JavaScript.
 
-**Note:** ES6 adds a `super` reference, which is typically going to be used with `class` (see Appendix A). The way `super` behaves (static binding rather than late binding as `this`) gives further weight to the idea that a function which is `super` bound somewhere is more a "method" than "function". But again, these are just subtle semantic (and mechanical) nuances.
+**Note:** ES6 adds a `super` reference, which is typically going to be used with `class` (see Appendix A). ***The way `super` behaves (static binding rather than late binding as `this`)*** gives further weight to the idea that a function which is `super` bound somewhere is more a "method" than "function". But again, these are just subtle semantic (and mechanical) nuances.
 
 Even when you declare a function expression as part of the object-literal, that function doesn't magically *belong* more to the object -- still just multiple references to the same function object:
 
