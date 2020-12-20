@@ -433,7 +433,7 @@ What's going on here?
 
 It may seem reasonable to assume that an equality check considers the *nature* or *contents* of the value; after all, `42 === 42` considers the actual `42` value and compares it. But when it comes to objects, a content-aware comparison is generally referred to as "structural equality."
 
-JS does not define `===` as *structural equality* for object values. Instead, `===` uses *identity equality* for object values.
+JS does not define `===` as ***structural equality*** for object values. Instead, `===` uses ***identity equality*** for object values.
 
 In JS, all object values are held by reference (see "Values vs References" in Appendix A), are assigned and passed by reference-copy, **and** to our current discussion, are compared by reference (identity) equality. Consider:
 
