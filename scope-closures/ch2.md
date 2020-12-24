@@ -204,7 +204,7 @@ Later, when it comes to execution of the program, the conversation will shift to
 
 > ***Engine***: Great, the value in `getStudentName` is a function, so I'm going to execute it.
 
-> ***Engine***: Hey, *Scope Manager*, now we need to instantiate the function's scope.
+> ***Engine***: Hey, *Scope Manager*, now we need to **instantiate** the function's scope.
 
 > ...
 
