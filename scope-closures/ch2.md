@@ -222,9 +222,12 @@ To review and summarize how a statement like `var students = [ .. ]` is processe
 
 The function scope for `getStudentName(..)` is nested inside the global scope. The block scope of the `for`-loop is similarly nested inside that function scope. Scopes can be lexically nested to any arbitrary depth as the program defines.
 
-Each scope gets its own *Scope Manager* instance each time that ***scope is executed*** (one or more times). Each scope automatically has all its identifiers registered at the start of the scope being executed (this is called "variable hoisting"; see Chapter 5).
+***Each scope gets its own *Scope Manager* instance each time that ***scope is executed*** (one or more times). ***Each scope** automatically has all its identifiers registered at the start of the scope being executed (this is called "variable hoisting"; see Chapter 5).
 
-At the beginning of a scope, if any identifier came from a `function` declaration, that variable is automatically initialized to its associated function reference. And if any identifier came from a `var` declaration (as opposed to `let`/`const`), that variable is automatically initialized to `undefined` so that it can be used; otherwise, the variable remains uninitialized (aka, in its "TDZ," see Chapter 5) and cannot be used until its full declaration-and-initialization are executed.
+At the beginning of a scope, 
+***if any identifier came from a `function` declaration, that variable is automatically initialized to its associated function reference.*** 
+***And if any identifier came from a `var` declaration (as opposed to `let`/`const`), that variable is automatically initialized to `undefined` so that it can be used;***
+***otherwise,(let,const) the variable remains uninitialized (aka, in its "TDZ," see Chapter 5) and cannot be used until its full declaration-and-initialization are executed.***
 
 In the `for (let student of students) {` statement, `students` is a *source* reference that must be looked up. But how will that lookup be handled, since the scope of the function will not find such an identifier?
 
