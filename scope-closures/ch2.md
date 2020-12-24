@@ -230,7 +230,7 @@ At the beginning of a scope,
 
 ***And if any identifier came from a `var` declaration (as opposed to `let`/`const`), that variable is automatically initialized to `undefined` so that it can be used;***
 
-***otherwise,(let,const) the variable remains uninitialized (aka, in its "TDZ," see Chapter 5) and cannot be used until its full declaration-and-initialization are executed.***
+***otherwise,(let) the variable remains uninitialized (aka, in its "TDZ," see Chapter 5) and cannot be used until its full declaration-and-initialization are executed.***
 
 In the `for (let student of students) {` statement, `students` is a *source* reference that must be looked up. But how will that lookup be handled, since the scope of the function will not find such an identifier?
 
@@ -258,7 +258,9 @@ If the variable is a *source*, an unresolved identifier lookup is considered an 
 
 The error message for an undeclared variable condition, in most JS environments, will look like, "Reference Error: XYZ is not defined." The phrase "not defined" seems almost identical to the word "undefined," as far as the English language goes. But these two are very different in JS, and this error message unfortunately creates a persistent confusion.
 
-"Not defined" really means "not declared"—or, rather, "undeclared," as in a variable that has no matching formal declaration in any *lexically available* scope. By contrast, "undefined" really means a variable was found (declared), but the variable otherwise has no other value in it at the moment, so it defaults to the `undefined` value.
+***"Not defined" really means "not declared"—or, rather, "undeclared,"*** as in a variable that has no matching formal declaration in any *lexically available* scope. 
+
+By contrast, ***"undefined" really means a variable was found (declared), but the variable otherwise has no other value in it at the moment, so it defaults to the `undefined` value.***
 
 To perpetuate the confusion even further, JS's `typeof` operator returns the string `"undefined"` for variable references in either state:
 
