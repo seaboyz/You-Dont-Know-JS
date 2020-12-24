@@ -225,7 +225,7 @@ The function scope for `getStudentName(..)` is nested inside the global scope. T
 ***Each scope gets its own *Scope Manager* instance each time that ***scope is executed*** (one or more times). ***Each scope** automatically has all its identifiers registered at the start of the scope being executed (this is called "variable hoisting"; see Chapter 5).
 
 At the beginning of a scope, 
-***if any identifier came from a `function` declaration, that variable is automatically initialized to its associated function reference.*** 
+####if any identifier came from a `function` declaration, that variable is automatically initialized to its associated function reference.
 ***And if any identifier came from a `var` declaration (as opposed to `let`/`const`), that variable is automatically initialized to `undefined` so that it can be used;***
 ***otherwise,(let,const) the variable remains uninitialized (aka, in its "TDZ," see Chapter 5) and cannot be used until its full declaration-and-initialization are executed.***
 
