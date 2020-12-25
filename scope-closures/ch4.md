@@ -92,18 +92,18 @@ In addition to (potentially) accounting for where an application's code resides 
 
 * JS exposes its built-ins:
 
-    - primitives: `undefined`, `null`, `Infinity`, `NaN`
-    - natives: `Date()`, `Object()`, `String()`, etc.
-    - global functions: `eval()`, `parseInt()`, etc.
-    - namespaces: `Math`, `Atomics`, `JSON`
-    - friends of JS: `Intl`, `WebAssembly`
+    - ***primitives***: `undefined`, `null`, `Infinity`, `NaN`
+    - ***natives***: `Date()`, `Object()`, `String()`, etc.
+    - ***global functions***: `eval()`, `parseInt()`, etc.
+    - ***namespaces***: `Math`, `Atomics`, `JSON`
+    - ***friends of JS***: `Intl`, `WebAssembly`
 
 * The environment hosting the JS engine exposes its own built-ins:
 
-    - `console` (and its methods)
-    - the DOM (`window`, `document`, etc)
-    - timers (`setTimeout(..)`, etc)
-    - web platform APIs: `navigator`, `history`, geolocation, WebRTC, etc.
+    - `***console***` (and its methods)
+    - ***the DOM*** (`window`, `document`, etc)
+    - ***timers*** (`setTimeout(..)`, etc)
+    - ***web platform API***s: `navigator`, `history`, geolocation, WebRTC, etc.
 
 These are just some of the many *globals* your programs will interact with.
 
@@ -111,7 +111,9 @@ These are just some of the many *globals* your programs will interact with.
 | :--- |
 | Node also exposes several elements "globally," but they're technically not in the `global` scope: `require()`, `__dirname`, `module`, `URL`, and so on. |
 
-Most developers agree that the global scope shouldn't just be a dumping ground for every variable in your application. That's a mess of bugs just waiting to happen. But it's also undeniable that the global scope is an important *glue* for practically every JS application.
+***Most developers agree that the global scope shouldn't just be a dumping ground for every variable in your application.*** That's a mess of bugs just waiting to happen. But it's also undeniable that the global scope is an important *glue* for practically every JS application.
+
+***Do not pollute the global enviroment***
 
 ## Where Exactly is this Global Scope?
 
@@ -173,7 +175,7 @@ console.log(window.something);
 // 42
 ```
 
-The `let` declaration adds a `something` global variable but not a global object property (see Chapter 3). The effect then is that the `something` lexical identifier shadows the `something` global object property.
+***The `let` declaration adds a `something` global variable but not a global object property (see Chapter 3).*** The effect then is that the `something` lexical identifier shadows the `something` global object property.
 
 It's almost certainly a bad idea to create a divergence between the global object and the global scope. Readers of your code will almost certainly be tripped up.
 
