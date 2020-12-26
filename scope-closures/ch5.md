@@ -261,7 +261,7 @@ It's really more of a "social engineering" issue. "Re-declaration" of variables 
 | :--- |
 | This is of course a stylistic opinion, not really a technical argument. Many developers agree with the position, and that's probably in part why TC39 included the error (as well as `let` conforming to `const`). But a reasonable case could have been made that staying consistent with `var`'s precedent was more prudent, and that such opinion-enforcement was best left to opt-in tooling like linters. In Appendix A, we'll explore whether `var` (and its associated behavior, like "re-declaration") can still be useful in modern JS. |
 
-When *Compiler* asks *Scope Manager* about a declaration, if that identifier has already been declared, and if either/both declarations were made with `let`, an error is thrown. The intended signal to the developer is "Stop relying on sloppy re-declaration!"
+***When *Compiler* asks *Scope Manager* about a declaration, if that identifier has already been declared, and if either/both declarations were made with `let`, an error is thrown.*** The intended signal to the developer is "Stop relying on sloppy re-declaration!"
 
 ### Constants?
 
@@ -287,7 +287,7 @@ The `studentName` variable cannot be re-assigned because it's declared with a `c
 
 | WARNING: |
 | :--- |
-| The error thrown when re-assigning `studentName` is a `TypeError`, not a `SyntaxError`. The subtle distinction here is actually pretty important, but unfortunately far too easy to miss. Syntax errors represent faults in the program that stop it from even starting execution. Type errors represent faults that arise during program execution. In the preceding snippet, `"Frank"` is printed out before we process the re-assignment of `studentName`, which then throws the error. |
+| The error thrown when re-assigning `studentName` is a `TypeError`, not a `SyntaxError`. The subtle distinction here is actually pretty important, but unfortunately far too easy to miss. ***Syntax errors represent faults in the program that stop it from even starting execution.*** ***Type errors represent faults that arise during program execution.*** In the preceding snippet, `"Frank"` is printed out before we process the re-assignment of `studentName`, which then throws the error. |
 
 So if `const` declarations cannot be re-assigned, and `const` declarations always require assignments, then we have a clear technical reason why `const` must disallow any "re-declarations": any `const` "re-declaration" would also necessarily be a `const` re-assignment, which can't be allowed!
 
