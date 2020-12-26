@@ -532,6 +532,10 @@ So if we analyze what's going on here, we see that an additional nuance is that 
 
 The term coined by TC39 to refer to this *period of time* from the entering of a scope to where the auto-initialization of the variable occurs is: ***Temporal Dead Zone (TDZ)***.
 
+***Declarition***
+***Initialization***
+***Assignment***
+
 The TDZ is the ***time window*** where a variable exists but is still uninitialized, and therefore cannot be accessed in any way. Only the execution of the instructions left by *Compiler* at the point of the original declaration can do that initialization. After that moment, the TDZ is done, and the variable is free to be used for the rest of the scope.
 
 A `var` also has technically has a TDZ, but it's zero in length and thus unobservable to our programs! Only `let` and `const` have an observable TDZ.
