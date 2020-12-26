@@ -533,7 +533,9 @@ So if we analyze what's going on here, we see that an additional nuance is that 
 The term coined by TC39 to refer to this *period of time* from the entering of a scope to where the auto-initialization of the variable occurs is: ***Temporal Dead Zone (TDZ)***.
 
 ***Declarition***
+
 ***Initialization***
+
 ***Assignment***
 
 The TDZ is the ***time window*** where a variable exists but is still uninitialized, and therefore cannot be accessed in any way. Only the execution of the instructions left by *Compiler* at the point of the original declaration can do that initialization. After that moment, the TDZ is done, and the variable is free to be used for the rest of the scope.
@@ -562,7 +564,9 @@ There's a common misconception that TDZ means `let` and `const` do not hoist. Th
 We've already seen that `let` and `const` don't auto-initialize at the top of the scope. But let's prove that `let` and `const` *do* hoist (auto-register at the top of the scope), courtesy of our friend shadowing (see "Shadowing" in Chapter 3):
 
 ***var declaration hoist(compile time) => auto initialization undefined(compile time)***
-***let declaration hoist(compile time) => auto initialization undefined(run time)***
+
+***let declaration hoist(compile time) => initialization(run time)***
+
 ***const declaration and initializtion have to happen at the same time(compile time)***
 
 ```js
