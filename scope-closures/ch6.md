@@ -242,15 +242,15 @@ A block only becomes a scope if necessary, to contain its block-scoped declarati
 // 0 2 4
 ```
 
-***Not all `{ .. }` curly-brace pairs create blocks (and thus are eligible to become scopes):
+***Not all `{ .. }` curly-brace pairs create blocks (and thus are eligible to become scopes)***:
 
 * ***Object literals use `{ .. }` curly-brace pairs to delimit their key-value lists, but such object values are **not** scopes.
 
-* ***`class` uses `{ .. }` curly-braces around its body definition, but this is not a block or scope.
+* ***`class` uses `{ .. }` curly-braces around its body definition, but this is not a block or scope***.
 
-* ***A `function` uses `{ .. } ` around its body, but this is not technically a block—it's a single statement for the function body. It *is*, however, a (function) scope.
+* ***A `function` uses `{ .. } ` around its body, but this is not technically a block—it's a single statement for the function body. It *is*, however, a (function) scope***.
 
-* ***The `{ .. }` curly-brace pair on a `switch` statement (around the set of `case` clauses) does not define a block/scope.
+* ***The `{ .. }` curly-brace pair on a `switch` statement (around the set of `case` clauses) does not define a block/scope***.
 
 Other than such non-block examples, a `{ .. }` curly-brace pair can define a block attached to a statement (like an `if` or `for`), or stand alone by itself—see the outermost `{ .. }` curly brace pair in the previous snippet. An explicit block of this sort—if it has no declarations, it's not actually a scope—serves no operational purpose, though it can still be useful as a semantic signal.
 
