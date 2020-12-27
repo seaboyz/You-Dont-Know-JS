@@ -21,9 +21,9 @@ Closure is originally a mathematical concept, from lambda calculus. But I'm not 
 
 Instead, I'm going to focus on a practical perspective. We'll start by defining closure in terms of what we can observe in different behavior of our programs, as opposed to if closure was not present in JS. However, later in this chapter, we're going to flip closure around to look at it from an *alternative perspective*.
 
-Closure is a behavior of functions and only functions. If you aren't dealing with a function, closure does not apply. An object cannot have closure, nor does a class have closure (though its functions/methods might). Only functions have closure.
+Closure is a behavior of functions and only functions. If you aren't dealing with a function, closure does not apply. ***An object cannot have closure, nor does a class have closure (though its functions/methods might). Only functions have closure***.
 
-For closure to be observed, a function must be invoked, and specifically it must be invoked in a different branch of the scope chain from where it was originally defined. A function executing in the same scope it was defined would not exhibit any observably different behavior with or without closure being possible; by the observational perspective and definition, that is not closure.
+***For closure to be observed, a function must be invoked, and specifically it must be invoked in a different branch of the scope chain from where it was originally defined. A function executing in the same scope it was defined would not exhibit any observably different behavior with or without closure being possible; by the observational perspective and definition, that is not closure.***
 
 Let's look at some code, annotated with its relevant scope bubble colors (see Chapter 2):
 
@@ -127,7 +127,7 @@ Each instance of the inner `addTo(..)` function is closing over its own `num1` v
 
 An important detail might have been too easy to gloss over in that previous paragraph, so let's reinforce it: ***closure is associated with an instance of a function, rather than its single lexical definition***. In the preceding snippet, there's just one inner `addTo(..)` function defined inside `adder(..)`, so it might seem like that would imply a single closure.
 
-But actually, every time the outer `adder(..)` function runs, a *new* inner `addTo(..)` function instance is created, and for each new instance, a new closure. So each inner function instance (labeled `add10To(..)` and `add42To(..)` in our program) has its own closure over its own instance of the scope environment from that execution of `adder(..)`.
+But actually, ***every time the outer `adder(..)` function runs, a *new* inner `addTo(..)` function instance is created, and for each new instance, a new closure.*** So each inner function instance (labeled `add10To(..)` and `add42To(..)` in our program) has its own closure over its own instance of the scope environment from that execution of `adder(..)`.
 
 ***Even though closure is based on lexical scope, which is handled at compile time, closure is observed as a runtime characteristic of function instances.***
 
@@ -216,7 +216,7 @@ greeting();
 // Hello, Suzy!
 ```
 
-By defining `greeting()` (aka, `hello()`) when `studentName` holds the value `"Frank"` (before the re-assignment to `"Suzy"`), the mistaken assumption is often that the closure will capture `"Frank"`. But `greeting()` is closed over the variable `studentName`, not its value. Whenever `greeting()` is invoked, the current value of the variable (`"Suzy"`, in this case) is reflected.
+By defining `greeting()` (aka, `hello()`) when `studentName` holds the value `"Frank"` (before the re-assignment to `"Suzy"`), the mistaken assumption is often that the closure will capture `"Frank"`. ***But `greeting()` is closed over the variable `studentName`, not its value.*** Whenever `greeting()` is invoked, the current value of the variable (`"Suzy"`, in this case) is reflected.
 
 The classic illustration of this mistake is defining functions inside a loop:
 
