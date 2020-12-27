@@ -235,6 +235,20 @@ keeps[1]();   // 3
 keeps[2]();   // 3
 ```
 
+```js
+var keep = [];
+
+var i = 0;
+while(i < 3) {
+    keeps[i] = function keepI(){
+        return i
+    };
+    i++;
+}
+```
+
+***closure is variable-oriented not value-oriented***
+
 | NOTE: |
 | :--- |
 | This kind of closure illustration typically uses a `setTimeout(..)` or some other callback like an event handler, inside the loop. I've simplified the example by storing function references in an array, so that we don't need to consider asynchronous timing in our analysis. The closure principle is the same, regardless. |
