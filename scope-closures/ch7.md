@@ -698,9 +698,9 @@ But there's another way of thinking about closure, and more precisely the nature
 
 This alternative model de-emphasizes "functions as first-class values," and instead embraces how functions (like all non-primitive values) are held by reference in JS, and assigned/passed by reference-copy—see Appendix A of the *Get Started* book for more information.
 
-Instead of thinking about the inner function instance of `addTo(..)` moving to the outer RED(1) scope via the `return` and assignment, we can envision that function instances actually just stay in place in their own scope environment, of course with their scope-chain intact.
+Instead of thinking about the inner function instance of `addTo(..)` moving to the outer RED(1) scope via the `return` and assignment, ***we can envision that function instances actually just stay in place in their own scope environment, of course with their scope-chain intact.***
 
-What gets *sent* to the RED(1) scope is **just a reference** to the in-place function instance, rather than the function instance itself. Figure 5 depicts the inner function instances remaining in place, pointed to by the RED(1) `addTo10` and `addTo42` references, respectively:
+***What gets *sent* to the RED(1) scope is **just a reference** to the in-place function instance, rather than the function instance itself*** Figure 5 depicts the inner function instances remaining in place, pointed to by the RED(1) `addTo10` and `addTo42` references, respectively:
 
 <figure>
     <img src="images/fig5.png" width="400" alt="Function instances inside scopes via closure, linked to by references" align="center">
