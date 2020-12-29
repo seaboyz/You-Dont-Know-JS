@@ -32,7 +32,7 @@ function getStudentName(studentID) {
 }
 ```
 
-Here, `studentID` is a considered a "simple" parameter, so it does behave as a member of the BLUE(2) function scope. But if we change it to be a non-simple parameter, that's no longer technically the case. Parameter forms considered non-simple include parameters with default values, rest parameters (using `...`), and destructured parameters.
+Here, `studentID` is a considered a "simple" parameter, so it does behave as a member of the BLUE(2) function scope. But if we change it to be a non-simple parameter, that's no longer technically the case. ***Parameter forms considered non-simple include parameters with default values, rest parameters (using `...`), and destructured parameters.***
 
 Consider:
 
@@ -46,7 +46,7 @@ function getStudentName(/*BLUE(2)*/ studentID = 0) {
 }
 ```
 
-Here, the parameter list essentially becomes its own scope, and the function's scope is then nested inside *that* scope.
+Here, ***the parameter list essentially becomes its own scope***, and the function's scope is then nested inside *that* scope.
 
 Why? What difference does it make? The non-simple parameter forms introduce various corner cases, so the parameter list becomes its own scope to more effectively deal with them.
 
@@ -128,9 +128,9 @@ Though the two `id`s look at that moment like they're one variable, they're actu
 
 My advice to avoid getting bitten by these weird nuances:
 
-* Never shadow parameters with local variables
+* ***Never shadow parameters with local variables***
 
-* Avoid using a default parameter function that closes over any of the parameters
+* ***Avoid using a default parameter function that closes over any of the parameters***
 
 At least now you're aware and can be careful about the fact that the parameter list is its own scope if any of the parameters are non-simple.
 
@@ -159,7 +159,7 @@ var askQuestion = function ofTheTeacher(){
 
 The `let` declaration form does not allow re-declaration (see Chapter 5). But this is perfectly legal shadowing, not re-declaration, because the two `ofTheTeacher` identifiers are in separate scopes.
 
-You'll rarely run into any case where the scope of a function's name identifier matters. But again, it's good to know how these mechanisms actually work. To avoid being bitten, never shadow function name identifiers.
+You'll rarely run into any case where the scope of a function's name identifier matters. But again, it's good to know how these mechanisms actually work. To avoid being bitten, ***never shadow function name identifiers***.
 
 ## Anonymous vs. Named Functions
 
@@ -167,15 +167,15 @@ As discussed in Chapter 3, functions can be expressed either in named or anonymo
 
 As you contemplate naming your functions, consider:
 
-* Name inference is incomplete
-* Lexical names allow self-reference
-* Names are useful descriptions
-* Arrow functions have no lexical names
-* IIFEs also need names
+* ***Name inference is incomplete***
+* ***Lexical names allow self-reference***
+* ***Names are useful descriptions***
+* ***Arrow functions have no lexical names***
+* ***IIFEs also need names***
 
 ### Explicit or Inferred Names?
 
-Every function in your program has a purpose. If it doesn't have a purpose, take it out, because you're just wasting space. If it *does* have a purpose, there *is* a name for that purpose.
+***Every function in your program has a purpose. If it doesn't have a purpose, take it out, because you're just wasting space. If it *does* have a purpose, there *is* a name for that purpose.***
 
 So far many readers likely agree with me. But does that mean we should always put that name into the code? Here's where I'll raise more than a few eyebrows. I say, unequivocally, yes!
 
@@ -364,9 +364,9 @@ lookupTheRecords(someData)
 
 The name `extractSalesRecords` tells the reader the purpose of this `then(..)` handler *better* than just inferring that purpose from mentally executing `return resp.allSales`.
 
-The only excuse for not including a name on a function is either laziness (don't want to type a few extra characters) or uncreativity (can't come up with a good name). If you can't figure out a good name, you likely don't understand the function and its purpose yet. The function is perhaps poorly designed, or it does too many things, and should be re-worked. Once you have a well-designed, single-purpose function, its proper name should become evident.
+The only excuse for not including a name on a function is either laziness (don't want to type a few extra characters) or uncreativity (can't come up with a good name). ***If you can't figure out a good name, you likely don't understand the function and its purpose yet. The function is perhaps poorly designed, or it does too many things, and should be re-worked. Once you have a well-designed, single-purpose function, its proper name should become evident.***
 
-Here's a trick I use: while first writing a function, if I don't fully understand its purpose and can't think of a good name to use, I just use `TODO` as the name. That way, later when reviewing my code, I'm likely to find those name placeholders, and I'm more inclined (and more prepared!) to go back and figure out a better name, rather than just leave it as `TODO`.
+Here's a trick I use: while first writing a function, ***if I don't fully understand its purpose and can't think of a good name to use, I just use `TODO` as the name. That way, later when reviewing my code, I'm likely to find those name placeholders, and I'm more inclined (and more prepared!) to go back and figure out a better name, rather than just leave it as `TODO`.***
 
 All functions need names. Every single one. No exceptions. Any name you omit is making the program harder to read, harder to debug, harder to extend and maintain later.
 
@@ -378,13 +378,13 @@ Don't use them as a general replacement for regular functions. They're more conc
 
 Arrow functions have a purpose, but that purpose is not to save keystrokes. Arrow functions have *lexical this* behavior, which is somewhat beyond the bounds of our discussion in this book.
 
-Briefly: arrow functions don't define a `this` identifier keyword at all. If you use a `this` inside an arrow function, it behaves exactly as any other variable reference, which is that the scope chain is consulted to find a function scope (non-arrow function) where it *is* defined, and to use that one.
+***Briefly: arrow functions don't define a `this` identifier keyword at all. If you use a `this` inside an arrow function, it behaves exactly as any other variable reference, which is that the scope chain is consulted to find a function scope (non-arrow function) where it *is* defined, and to use that one.***
 
 In other words, arrow functions treat `this` like any other lexical variable.
 
 If you're used to hacks like `var self = this`, or if you prefer to call `.bind(this)` on inner `function` expressions, just to force them to inherit a `this` from an outer function like it was a lexical variable, then `=>` arrow functions are absolutely the better option. They're designed specifically to fix that problem.
 
-So, in the rare cases you need *lexical this*, use an arrow function. It's the best tool for that job. But just be aware that in doing so, you're accepting the downsides of an anonymous function. You should expend additional effort to mitigate the readability *cost*, such as more descriptive variable names and code comments.
+***So, in the rare cases you need *lexical this*, use an arrow function. It's the best tool for that job.*** But just be aware that in doing so, you're accepting the downsides of an anonymous function. You should expend additional effort to mitigate the readability *cost*, such as more descriptive variable names and code comments.
 
 ### IIFE Variations
 
@@ -430,7 +430,7 @@ IIFEs are typically defined by placing `( .. )` around the `function` expression
 }();
 ```
 
-The `!`, `+`, `~`, and several other unary operators (operators with one operand) can all be placed in front of `function` to turn it into an expression. Then the final `()` call is valid, which makes it an IIFE.
+***The `!`, `+`, `~`,*** and several other unary operators (operators with one operand) can all be placed in front of `function` to turn it into an expression. Then the final `()` call is valid, which makes it an IIFE.
 
 I actually kind of like using the `void` unary operator when defining a standalone IIFE:
 
@@ -440,7 +440,7 @@ void function yepItsAnIIFE() {
 }();
 ```
 
-The benefit of `void` is, it clearly communicates at the beginning of the function that this IIFE won't be returning any value.
+***The benefit of `void` is, it clearly communicates at the beginning of the function that this IIFE won't be returning any value.***
 
 However you define your IIFEs, show them some love by giving them names.
 
