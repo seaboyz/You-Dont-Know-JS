@@ -743,7 +743,7 @@ Some breadcrumbs in the TDZ origin story:
 
 TDZ comes from `const`, actually.
 
-During early ES6 development work, TC39 had to decide whether `const` (and `let`) were going to hoist to the top of their blocks. They decided these declarations would hoist, similar to how `var` does. Had that not been the case, I think some of the fear was confusion with mid-scope shadowing, such as:
+During early ES6 development work, TC39 had to decide whether `const` (and `let`) were going to hoist to the top of their blocks. They decided these ***declarations would hoist***, similar to how `var` does. Had that not been the case, I think some of the fear was confusion with mid-scope shadowing, such as:
 
 ```js
 let greeting = "Hi!";
@@ -796,7 +796,7 @@ Well, TC39 made the decision: since we need a TDZ for `const`, we might as well 
 
 My counter-argument would be: if you're favoring consistency, be consistent with `var` instead of `const`; `let` is definitely more like `var` than `const`. That's especially true since they had already chosen consistency with `var` for the whole hoisting-to-the-top-of-the-scope thing. Let `const` be its own unique deal with a TDZ, and let the answer to TDZ purely be: just avoid the TDZ by always declaring your constants at the top of the scope. I think this would have been more reasonable.
 
-But alas, that's not how it landed. `let` has a TDZ because `const` needs a TDZ, because `let` and `const` mimic `var` in their hoisting to the top of the (block) scope. There ya go. Too circular? Read it again a few times.
+But alas, that's not how it landed. ***`let` has a TDZ because `const` needs a TDZ, because `let` and `const` mimic `var` in their hoisting to the top of the (block) scope***. There ya go. Too circular? Read it again a few times.
 
 ## Are Synchronous Callbacks Still Closures?
 
@@ -819,9 +819,9 @@ Don't get lost following this rabbit trail through closures and callbacks:
 
 Before we revisit closure, let me spend a brief moment addressing the word "callback." It's a generally accepted norm that saying "callback" is synonymous with both *asynchronous callbacks* and *synchronous callbacks*. I don't think I agree that this is a good idea, so I want to explain why and propose we move away from that to another term.
 
-Let's first consider an *asynchronous callback*, a function reference that will be invoked at some future *later* point. What does "callback" mean, in this case?
+Let's first consider an ***asynchronous callback***, a function reference that will be invoked at some future *later* point. What does "callback" mean, in this case?
 
-It means that the current code has finished or paused, suspended itself, and that when the function in question is invoked later, execution is entering back into the suspended program, resuming it. Specifically, the point of re-entry is the code that was wrapped in the function reference:
+***It means that the current code has finished or paused, suspended itself, and that when the function in question is invoked later, execution is entering back into the suspended program, resuming it. Specifically, the point of re-entry is the code that was wrapped in the function reference:***
 
 ```js
 setTimeout(function waitForASecond(){
@@ -863,9 +863,9 @@ Should we refer to `formatIDLabel(..)` as a callback? Is the `map(..)` utility r
 
 There's nothing to *call back into* per se, because the program hasn't paused or exited. We're passing a function (reference) from one part of the program to another part of the program, and then it's immediately invoked.
 
-There's other established terms that might match what we're doing—passing in a function (reference) so that another part of the program can invoke it on our behalf. You might think of this as *Dependency Injection* (DI) or *Inversion of Control* (IoC).
+There's other established terms that might match what we're doing—passing in a function (reference) so that another part of the program can invoke it on our behalf. You might think of this as ***Dependency Injection*** (DI) or ***Inversion of Control*** (IoC).
 
-DI can be summarized as passing in necessary part(s) of functionality to another part of the program so that it can invoke them to complete its work. That's a decent description for the `map(..)` call above, isn't it? The `map(..)` utility knows to iterate over the list's values, but it doesn't know what to *do* with those values. That's why we pass it the `formatIDLabel(..)` function. We pass in the dependency.
+DI can be summarized as passing in necessary part(s) of functionality to another part of the program so that it can invoke them to complete its work. That's a decent description for the `map(..)` call above, isn't it? ***The `map(..)` utility knows to iterate over the list's values, but it doesn't know what to *do* with those values. That's why we pass it the `formatIDLabel(..)` function. We pass in the dependency***.
 
 IoC is a pretty similar, related concept. Inversion of control means that instead of the current area of your program controlling what's happening, you hand control off to another part of the program. We wrapped the logic for computing a label string in the function `formatIDLabel(..)`, then handed invocation control to the `map(..)` utility.
 
@@ -873,7 +873,7 @@ Notably, Martin Fowler cites IoC as the difference between a framework and a lib
 
 In the context of our discussion, either DI or IoC could work as an alternative label for a *synchronous callback*.
 
-But I have a different suggestion. Let's refer to (the functions formerly known as) *synchronous callbacks*, as *inter-invoked functions* (IIFs). Yes, exactly, I'm playing off IIFEs. These kinds of functions are *inter-invoked*, meaning: another entity invokes them, as opposed to IIFEs, which invoke themselves immediately.
+But I have a different suggestion. Let's refer to (the functions formerly known as) *synchronous callbacks*, as *inter-invoked functions* (IIFs). Yes, exactly, I'm playing off IIFEs. These kinds of functions are ***inter-invoked*, meaning: another entity invokes them, as opposed to IIFEs, which invoke themselves immediately***.
 
 What's the relationship between an *asynchronous callback* and an IIF? An *asynchronous callback* is an IIF that's invoked asynchronously instead of synchronously.
 
@@ -1005,9 +1005,9 @@ The only difference here is directly returning the object that serves as the pub
 
 But I strongly prefer, and always use myself, the former `publicAPI` form. Two reasons:
 
-* `publicAPI` is a semantic descriptor that aids readability by making it more obvious what the purpose of the object is.
+* ***`publicAPI` is a semantic descriptor that aids readability by making it more obvious what the purpose of the object is***.
 
-* Storing an inner `publicAPI` variable that references the same external public API object returned, can be useful if you need to access or modify the API during the lifetime of the module.
+* ***Storing an inner `publicAPI` variable that references the same external public API object returned, can be useful if you need to access or modify the API during the lifetime of the module***.
 
     For example, you may want to call one of the publicly exposed functions, from inside the module. Or, you may want to add or remove methods depending on certain conditions, or update the value of an exposed property.
 
