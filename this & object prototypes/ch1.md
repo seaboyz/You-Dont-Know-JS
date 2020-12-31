@@ -74,7 +74,7 @@ The name "this" creates confusion when developers try to think about it too lite
 
 The first common temptation is to assume `this` refers to the function itself. That's a reasonable grammatical inference, at least.(***function has its way to refer itself which is the function name, so it doesn't need "this"***)
 
-Why would you want to refer to a function from inside itself? The most common reasons would be things like recursion (calling a function from inside itself) or having an event handler that can unbind itself when it's first called.
+Why would you want to refer to a function from inside itself? The most common reasons would be things like ***recursion*** (calling a function from inside itself) or ***having an event handler that can unbind itself when it's first called.***
 
 Developers new to JS's mechanisms often think that referencing the function as an object (all functions in JavaScript are objects!) lets you store *state* (values in properties) between function calls. While this is certainly possible and has some limited uses, the rest of the book will expound on many other patterns for *better* places to store state besides the function object.
 
@@ -167,7 +167,7 @@ In the first function, called a "named function", `foo` is a reference that can 
 
 But in the second example, the function callback passed to `setTimeout(..)` has no name identifier (so called an "anonymous function"), so there's no proper way to refer to the function object itself.
 
-**Note:** The old-school but now deprecated and frowned-upon `arguments.callee` reference inside a function *also* points to the function object of the currently executing function. This reference is typically the only way to access an anonymous function's object from inside itself. The best approach, however, is to avoid the use of anonymous functions altogether, at least for those which require a self-reference, and instead use a named function (expression). `arguments.callee` is deprecated and should not be used.
+**Note:** The old-school but now deprecated and frowned-upon ***`arguments.callee`*** reference inside a function *also* points to the function object of the currently executing function. This reference is typically the only way to access an anonymous function's object from inside itself. The best approach, however, is to avoid the use of anonymous functions altogether, at least for those which require a self-reference, and instead use a named function (expression). `arguments.callee` is deprecated and should not be used.
 
 So another solution to our running example would have been to use the `foo` identifier as a function object reference in each place, and not use `this` at all, which *works*:
 
@@ -237,7 +237,9 @@ console.log( foo.count ); // 4
 
 The next most common misconception about the meaning of `this` is that it somehow refers to the function's scope. It's a tricky question, because in one sense there is some truth, but in the other sense, it's quite misguided.
 
-To be clear, `this` does not, in any way, refer to a function's **lexical scope**. It is true that internally, scope is kind of like an object with properties for each of the available identifiers. But the scope "object" is not accessible to JavaScript code. It's an inner part of the *Engine*'s implementation.
+To be clear, ***`this` does not, in any way, refer to a function's **lexical scope***. It is true that internally, scope is kind of like an object with properties for each of the available identifiers. But the ***scope "object" is not accessible to JavaScript code***. It's an inner part of the *Engine*'s implementation.
+
+***There is no way to access to the function lexical scope using javascirpt code***
 
 Consider code which attempts (and fails!) to cross over the boundary and use `this` to implicitly refer to a function's lexical scope:
 
@@ -258,7 +260,7 @@ There's more than one mistake in this snippet. While it may seem contrived, the 
 
 Firstly, an attempt is made to reference the `bar()` function via `this.bar()`. It is almost certainly an *accident* that it works, but we'll explain the *how* of that shortly. The most natural way to have invoked `bar()` would have been to omit the leading `this.` and just make a lexical reference to the identifier.
 
-However, the developer who writes such code is attempting to use `this` to create a bridge between the lexical scopes of `foo()` and `bar()`, so that `bar()` has access to the variable `a` in the inner scope of `foo()`. **No such bridge is possible.** You cannot use a `this` reference to look something up in a lexical scope. It is not possible.
+However, the developer who writes such code is attempting to use `this` to create a bridge between the lexical scopes of `foo()` and `bar()`, so that `bar()` has access to the variable `a` in the inner scope of `foo()`. **No such bridge is possible.** ***You cannot use a `this` reference to look something up in a lexical scope. It is not possible***.
 
 Every time you feel yourself trying to mix lexical scope look-ups with `this`, remind yourself: *there is no bridge*.
 
@@ -268,7 +270,11 @@ Having set aside various incorrect assumptions, let us now turn our attention to
 
 ***We said earlier that `this` is not an author-time binding but a runtime binding. It is contextual based on the conditions of the function's invocation. `this` binding has nothing to do with where a function is declared, but has instead everything to do with the manner in which the function is called.***
 
-When a function is invoked, an activation record, otherwise known as an ***execution context***, is created. This record contains information about ***where the function was called from (the call-stack)***, ***how* the function was invoked(call,apply)***, ***what parameters were passed**, etc. ***One of the properties of this record is the `this` reference which will be used for the duration of that function's execution.***
+When a function is invoked, an activation record, otherwise known as an ***execution context***, is created. This record contains information about 
+***where the function was called from (the call-stack)***, 
+***how* the function was invoked(call,apply)***, 
+***what parameters were passed**, etc. 
+***One of the properties of this record is the `this` reference which will be used for the duration of that function's execution.***
 
 In the next chapter, we will learn to find a function's **call-site** to determine how its execution will bind `this`.
 
