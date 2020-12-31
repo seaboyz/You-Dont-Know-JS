@@ -72,7 +72,7 @@ The name "this" creates confusion when developers try to think about it too lite
 
 ### Itself
 
-The first common temptation is to assume `this` refers to the function itself. That's a reasonable grammatical inference, at least.
+The first common temptation is to assume `this` refers to the function itself. That's a reasonable grammatical inference, at least.(***function has its way to refer itself which is the function name, so it doesn't need "this"***)
 
 Why would you want to refer to a function from inside itself? The most common reasons would be things like recursion (calling a function from inside itself) or having an event handler that can unbind itself when it's first called.
 
