@@ -126,6 +126,18 @@ obj.foo(); // 2
 
 Firstly, notice the manner in which `foo()` is declared and then later added as a reference property onto `obj`. Regardless of whether `foo()` is initially declared *on* `obj`, or is added as a reference later (as this snippet shows), in neither case is the **function** really "owned" or "contained" by the `obj` object.
 
+***There is no scope in the object, so neigher function or property is owned or contained by the object***
+
+```js
+var obj = {
+	a: 2,
+	foo() {
+	    console.log(this.a)
+	},
+};
+
+obj.foo(); // 2
+
 However, the call-site *uses* the `obj` context to **reference** the function, so you *could* say that the `obj` object "owns" or "contains" the **function reference** at the time the function is called.
 
 Whatever you choose to call this pattern, at the point that `foo()` is called, it's preceded by an object reference to `obj`. When there is a context object for a function reference, the *implicit binding* rule says that it's *that* object which should be used for the function call's `this` binding.
