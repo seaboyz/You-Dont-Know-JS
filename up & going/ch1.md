@@ -227,7 +227,7 @@ These different representations for values are called *types* in programming ter
 * When you need to print a value on the screen, you need a `string` (one or more characters, words, sentences).
 * When you need to make a decision in your program, you need a `boolean` (`true` or `false`).
 
-Values that are included directly in the source code are called *literals*. `string` literals are surrounded by double quotes `"..."` or single quotes (`'...'`) -- the only difference is stylistic preference. `number` and `boolean` literals are just presented as is (i.e., `42`, `true`, etc.).
+***Values that are included directly in the source code are called *literals****. `string` literals are surrounded by double quotes `"..."` or single quotes (`'...'`) -- the only difference is stylistic preference. `number` and `boolean` literals are just presented as is (i.e., `42`, `true`, etc.).
 
 Consider:
 
@@ -339,7 +339,7 @@ You will definitely want to begin your learning of programming by starting off w
 
 Most useful programs need to track a value as it changes over the course of the program, undergoing different operations as called for by your program's intended tasks.
 
-The easiest way to go about that in your program is to assign a value to a symbolic container, called a *variable* -- so called because the value in this container can *vary* over time as needed.
+The easiest way to go about that in your program is to assign a value to a ***symbolic container***, called a *variable* -- so called because the ***value in this container can *vary* over time as needed***.
 
 In some programming languages, you declare a variable (container) to hold a specific type of value, such as `number` or `string`. *Static typing*, otherwise known as *type enforcement*, is typically cited as a benefit for program correctness by preventing unintended value conversions.
 
