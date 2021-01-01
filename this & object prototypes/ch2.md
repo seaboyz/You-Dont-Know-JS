@@ -621,7 +621,7 @@ Now, we can summarize the rules for determining `this` from a function call's ca
 
     `var bar = foo.call( obj2 )`
 
-3. Is the function called with a context (**implicit binding**), otherwise known as an owning or containing object? If so, `this` is *that* context object.
+3. Is the function called with a context (**implicit binding**), otherwise known as an ***owning or containing object***? If so, `this` is *that* context object.
 
     `var bar = obj1.foo()`
 
@@ -639,7 +639,7 @@ The `this`-binding behavior can in some scenarios be surprising, where you inten
 
 ### Ignored `this`
 
-If you pass `null` or `undefined` as a `this` binding parameter to `call`, `apply`, or `bind`, those values are effectively ignored, and instead the *default binding* rule applies to the invocation.
+***If you pass `null` or `undefined` as a `this` binding parameter to `call`, `apply`, or `bind`, those values are effectively ignored, and instead the *default binding* rule applies to the invocation.***
 
 ```js
 function foo() {
@@ -682,7 +682,7 @@ Perhaps a somewhat "safer" practice is to pass a specifically set up object for 
 
 If we always pass a DMZ object for ignored `this` bindings we don't think we need to care about, we're sure any hidden/unexpected usage of `this` will be restricted to the empty object, which insulates our program's `global` object from side-effects.
 
-Since this object is totally empty, I personally like to give it the variable name `ø` (the lowercase mathematical symbol for the empty set). On many keyboards (like US-layout on Mac), this symbol is easily typed with `⌥`+`o` (option+`o`). Some systems also let you set up hotkeys for specific symbols. If you don't like the `ø` symbol, or your keyboard doesn't make that as easy to type, you can of course call it whatever you want.
+Since this object is totally empty, I personally like to give it the variable name `ø` (the lowercase mathematical symbol for the empty set). On many keyboards (like US-layout on Mac), this symbol is easily typed with ***`⌥`+`o` (option+`o`)***. Some systems also let you set up hotkeys for specific symbols. If you don't like the `ø` symbol, or your keyboard doesn't make that as easy to type, you can of course call it whatever you want.
 
 Whatever you call it, the easiest way to set it up as **totally empty** is `Object.create(null)` (see Chapter 5). `Object.create(null)` is similar to `{ }`, but without the delegation to `Object.prototype`, so it's "more empty" than just `{ }`.
 
