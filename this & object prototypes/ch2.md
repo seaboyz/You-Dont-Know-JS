@@ -414,14 +414,17 @@ For example, the `Number(..)` function acting as a constructor, quoting from the
 >
 > When Number is called as part of a new expression it is a constructor: it initialises the newly created object.
 
-So, pretty much any ol' function, including the built-in object functions like `Number(..)` (see Chapter 3) can be called with `new` in front of it, and that makes that function call a *constructor call*. This is an important but subtle distinction: there's really no such thing as "constructor functions", but rather construction calls *of* functions.
+So, pretty much any ol' function, including the built-in object functions like `Number(..)` (see Chapter 3) can be called with `new` in front of it, and that makes that function call a *constructor call*. This is an important but subtle distinction: ***there's really no such thing as "constructor functions", but rather construction calls *of* functions***.
 
 When a function is invoked with `new` in front of it, otherwise known as a constructor call, the following things are done automatically:
 
-1. a brand new object is created (aka, constructed) out of thin air
-2. *the newly constructed object is `[[Prototype]]`-linked*
-3. the newly constructed object is set as the `this` binding for that function call
-4. unless the function returns its own alternate **object**, the `new`-invoked function call will *automatically* return the newly constructed object.
+***1. a brand new object is created (aka, constructed) out of thin air***
+
+***2. *the newly constructed object is `[[Prototype]]`-linked****
+
+***3. the newly constructed object is set as the `this` binding for that function call***
+
+***4. unless the function returns its own alternate **object**, the `new`-invoked function call will *automatically* return the newly constructed object***
 
 Steps 1, 3, and 4 apply to our current discussion. We'll skip over step 2 for now and come back to it in Chapter 5.
 
