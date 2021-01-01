@@ -44,7 +44,7 @@ Note that the *simple primitives* (`string`, `number`, `boolean`, `null`, and `u
 
 By contrast, there *are* a few special object sub-types, which we can refer to as *complex primitives*.
 
-`function` is a sub-type of object (technically, a "callable object"). Functions in JS are said to be "first class" in that they are basically just normal objects (with callable behavior semantics bolted on), and so they can be handled like any other plain object.
+`function` is a sub-type of object (technically, a "***callable object***"). Functions in JS are said to be "first class" in that they are basically just normal objects (with callable behavior semantics bolted on), and so they can be handled like any other plain object.
 
 Arrays are also a form of objects, with extra behavior. The organization of contents in arrays is slightly more structured than for general objects.
 
@@ -109,7 +109,14 @@ The same sort of coercion happens between the number literal primitive `42` and 
 
 As mentioned earlier, the contents of an object consist of values (any type) stored at specifically named *locations*, which we call properties.
 
-It's important to note that while we say "contents" which implies that these values are *actually* stored inside the object, that's merely an appearance. The engine stores values in implementation-dependent ways, and may very well not store them *in* some object container. ***What *is* stored in the container are these property names, which act as pointers (technically, *references*) to where the values are stored.***
+It's important to note that while we say "contents" which implies that these values are *actually* stored inside the object, that's merely an appearance. The engine stores values in implementation-dependent ways, and may very well not store them *in* some object container. 
+
+***What *is* stored in the container are these property names, which act as pointers (technically, *references*) to where the values are stored.***
+
+***(Object just contains addresses, where to look for those values)***
+
+***Varible is a container, store those values with the varible names***
+
 
 Consider:
 
