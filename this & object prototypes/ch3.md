@@ -636,9 +636,13 @@ The default `[[Put]]` and `[[Get]]` operations for objects completely control ho
 
 **Note:** Using future/advanced capabilities of the language, it may be possible to override the default `[[Get]]` or `[[Put]]` operations for an entire object (not just per property). This is beyond the scope of our discussion in this book, but will be covered later in the "You Don't Know JS" series.
 
-ES5 introduced a way to override part of these default operations, not on an object level but a per-property level, through the use of getters and setters. Getters are properties which actually call a hidden function to retrieve a value. Setters are properties which actually call a hidden function to set a value.
+ES5 introduced a way to override part of these default operations, not on an object level but a per-property level, through the use of getters and setters. 
 
-When you define a property to have either a getter or a setter or both, its definition becomes an "accessor descriptor" (as opposed to a "data descriptor"). For accessor-descriptors, the `value` and `writable` characteristics of the descriptor are moot and ignored, and instead JS considers the `set` and `get` characteristics of the property (as well as `configurable` and `enumerable`).
+***Getters are properties which actually call a hidden function to retrieve a value.***
+
+***Setters are properties which actually call a hidden function to set a value.***
+
+When you define a property to have either a getter or a setter or both, its definition becomes an "***accessor descriptor***" (as opposed to a "data descriptor"). ***For accessor-descriptors, the `value` and `writable` characteristics of the descriptor are moot and ignored, and instead JS considers the `set` and `get` characteristics of the property (as well as `configurable` and `enumerable`)***.
 
 Consider:
 
@@ -724,7 +728,11 @@ myObject.hasOwnProperty( "a" );	// true
 myObject.hasOwnProperty( "b" );	// false
 ```
 
-The `in` operator will check to see if the property is *in* the object, or if it exists at any higher level of the `[[Prototype]]` chain object traversal (see Chapter 5). By contrast, `hasOwnProperty(..)` checks to see if *only* `myObject` has the property or not, and will *not* consult the `[[Prototype]]` chain. We'll come back to the important differences between these two operations in Chapter 5 when we explore `[[Prototype]]`s in detail.
+***The `in` operator will check to see if the property is *in* the object, or if it exists at any higher level of the `[[Prototype]]` chain object traversal (see Chapter 5)***
+
+***. By contrast, `hasOwnProperty(..)` checks to see if *only* `myObject` has the property or not, and will *not* consult the `[[Prototype]]` chain.***
+
+We'll come back to the important differences between these two operations in Chapter 5 when we explore `[[Prototype]]`s in detail.
 
 `hasOwnProperty(..)` is accessible for all normal objects via delegation to `Object.prototype` (see Chapter 5). But it's possible to create an object that does not link to `Object.prototype` (via `Object.create(null)` -- see Chapter 5). In this case, a method call like `myObject.hasOwnProperty(..)` would fail.
 
