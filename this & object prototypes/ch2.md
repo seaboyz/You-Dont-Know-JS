@@ -471,7 +471,7 @@ obj1.foo.call( obj2 ); // 3
 obj2.foo.call( obj1 ); // 2
 ```
 
-So, *explicit binding* takes precedence over *implicit binding*, which means you should ask **first** if *explicit binding* applies before checking for *implicit binding*.
+***So, *explicit binding* takes precedence over *implicit binding****, which means you should ask **first** if *explicit binding* applies before checking for *implicit binding*.
 
 Now, we just need to figure out where *new binding* fits in the precedence.
 
@@ -590,7 +590,7 @@ We won't actually dive into explaining how this trickery works (it's complicated
 
 Why is `new` being able to override *hard binding* useful?
 
-The primary reason for this behavior is to create a function (that can be used with `new` for constructing objects) that essentially ignores the `this` *hard binding* but which presets some or all of the function's arguments. One of the capabilities of `bind(..)` is that any arguments passed after the first `this` binding argument are defaulted as standard arguments to the underlying function (technically called "partial application", which is a subset of "currying").
+***The primary reason for this behavior is to create a function (that can be used with `new` for constructing objects) that essentially ignores the `this` *hard binding* but which presets some or all of the function's arguments. One of the capabilities of `bind(..)` is that any arguments passed after the first `this` binding argument are defaulted as standard arguments to the underlying function (technically called "partial application", which is a subset of "currying").***
 
 For example:
 
