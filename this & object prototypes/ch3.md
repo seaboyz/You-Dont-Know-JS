@@ -199,7 +199,7 @@ Some developers like to make a distinction when talking about a property access 
 
 **The specification makes this same distinction**, interestingly.
 
-Technically, functions never "belong" to objects, so saying that a function that just happens to be accessed on an object reference is automatically a "method" seems a bit of a stretch of semantics.
+Technically, ***functions never "belong" to objects***, so saying that a function that just happens to be accessed on an object reference is automatically a "method" seems a bit of a stretch of semantics.
 
 It *is* true that some functions have `this` references in them, and that *sometimes* these `this` references refer to the object reference at the call-site. But this usage really does not make that function any more a "method" than any other function, as `this` is dynamically bound at run-time, at the call-site, and thus its relationship to the object is indirect, at best.
 
@@ -229,11 +229,11 @@ myObject.someFoo;	// function foo(){..}
 
 **Perhaps one could argue** that a function *becomes a method*, not at definition time, but during run-time just for that invocation, depending on how it's called at its call-site (with an object reference context or not -- see Chapter 2 for more details). Even this interpretation is a bit of a stretch.
 
-The safest conclusion is probably that "function" and "method" are interchangeable in JavaScript.
+The safest conclusion is probably that ***"function" and "method" are interchangeable in JavaScript***.
 
 **Note:** ES6 adds a `super` reference, which is typically going to be used with `class` (see Appendix A). ***The way `super` behaves (static binding rather than late binding as `this`)*** gives further weight to the idea that a function which is `super` bound somewhere is more a "method" than "function". But again, these are just subtle semantic (and mechanical) nuances.
 
-Even when you declare a function expression as part of the object-literal, that function doesn't magically *belong* more to the object -- still just multiple references to the same function object:
+***Even when you declare a function expression as part of the object-literal, that function doesn't magically *belong* more to the object -- still just multiple references to the same function object***:
 
 ```js
 var myObject = {
@@ -347,7 +347,7 @@ newObj.c === anotherArray;		// true
 newObj.d === anotherFunction;	// true
 ```
 
-**Note:** In the next section, we describe "property descriptors" (property characteristics) and show the use of `Object.defineProperty(..)`. The duplication that occurs for `Object.assign(..)` however is purely `=` style assignment, so any special characteristics of a property (like `writable`) on a source object **are not preserved** on the target object.
+**Note:** In the next section, we describe "property descriptors" (property characteristics) and show the use of `Object.defineProperty(..)`. The duplication that occurs for ***`Object.assign(..)` however is purely `=` style assignment***, so any special characteristics of a property (like `writable`) on a source object **are not preserved** on the target object.
 
 ### Property Descriptors
 
@@ -467,9 +467,9 @@ Object.defineProperty( myObject, "a", {
 
 The final `defineProperty(..)` call results in a TypeError, regardless of `strict mode`, if you attempt to change the descriptor definition of a non-configurable property. Be careful: as you can see, changing `configurable` to `false` is a **one-way action, and cannot be undone!**
 
-**Note:** There's a nuanced exception to be aware of: even if the property is already `configurable:false`, `writable` can always be changed from `true` to `false` without error, but not back to `true` if already `false`.
+**Note:** ***There's a nuanced exception to be aware of: even if the property is already `configurable:false`, `writable` can always be changed from `true` to `false` without error, but not back to `true` if already `false`***.
 
-Another thing `configurable:false` prevents is the ability to use the `delete` operator to remove an existing property.
+***Another thing `configurable:false` prevents is the ability to use the `delete` operator to remove an existing property***.
 
 ```js
 var myObject = {
@@ -494,7 +494,7 @@ myObject.a;				// 2
 
 As you can see, the last `delete` call failed (silently) because we made the `a` property non-configurable.
 
-`delete` is only used to remove object properties (which can be removed) directly from the object in question. If an object property is the last remaining *reference* to some object/function, and you `delete` it, that removes the reference and now that unreferenced object/function can be garbage collected. But, it is **not** proper to think of `delete` as a tool to free up allocated memory as it does in other languages (like C/C++). `delete` is just an object property removal operation -- nothing more.
+`delete` is only used to remove object properties (which can be removed) directly from the object in question. If an object property is the last remaining *reference* to some object/function, and you `delete` it, that removes the reference and now that unreferenced object/function can be garbage collected. But, it is **not** proper to think of `delete` as a tool to free up allocated memory as it does in other languages (like C/C++). ***`delete` is just an object property removal operation -- nothing more***.
 
 #### Enumerable
 
@@ -620,13 +620,13 @@ Since there's an internally defined `[[Get]]` operation for getting a value from
 
 It may be tempting to think that an assignment to a property on an object would just invoke `[[Put]]` to set or create that property on the object in question. But the situation is more nuanced than that.
 
-When invoking `[[Put]]`, how it behaves differs based on a number of factors, including (most impactfully) whether the property is already present on the object or not.
+When invoking `[[Put]]`, how it behaves differs based on a number of factors, including (most impactfully) ***whether the property is already present on the object or not***.
 
 If the property is present, the `[[Put]]` algorithm will roughly check:
 
-1. Is the property an accessor descriptor (see "Getters & Setters" section below)? **If so, call the setter, if any.**
-2. Is the property a data descriptor with `writable` of `false`? **If so, silently fail in `non-strict mode`, or throw `TypeError` in `strict mode`.**
-3. Otherwise, set the value to the existing property as normal.
+1. ***Is the property an accessor descriptor (see "Getters & Setters" section below)***? **If so, call the setter, if any.**
+2. ***Is the property a data descriptor with `writable` of `false`?*** **If so, silently fail in `non-strict mode`, or throw `TypeError` in `strict mode`.**
+3. ***Otherwise, set the value to the existing property as normal***.
 
 If the property is not yet present on the object in question, the `[[Put]]` operation is even more nuanced and complex. We will revisit this scenario in Chapter 5 when we discuss `[[Prototype]]` to give it more clarity.
 
