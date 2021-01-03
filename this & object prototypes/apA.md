@@ -64,7 +64,7 @@ It's not all bubblegum and roses, though. There are still some deep and profound
 
 Firstly, the `class` syntax may convince you a new "class" mechanism exists in JS as of ES6. **Not so.** `class` is, mostly, just syntactic sugar on top of the existing `[[Prototype]]` (delegation!) mechanism.
 
-That means `class` is not actually copying definitions statically at declaration time the way it does in traditional class-oriented languages. If you change/replace a method (on purpose or by accident) on the parent "class", the child "class" and/or instances will still be "affected", in that they didn't get copies at declaration time, they are all still using the live-delegation model based on `[[Prototype]]`:
+That means `class` is not actually copying definitions statically at declaration time the way it does in traditional class-oriented languages. ***If you change/replace a method (on purpose or by accident) on the parent "class", the child "class" and/or instances will still be "affected",*** in that they didn't get copies at declaration time, they are all still using the live-delegation model based on `[[Prototype]]`:
 
 ```js
 class C {
@@ -93,7 +93,7 @@ This only seems like reasonable behavior *if you already know* about the delegat
 
 Doesn't the ES6 `class` syntax **just make it harder** to see and understand the difference between traditional classes and delegated objects?
 
-`class` syntax *does not* provide a way to declare class member properties (only methods). So if you need to do that to track shared state among instances, then you end up going back to the ugly `.prototype` syntax, like this:
+***`class` syntax *does not* provide a way to declare class member properties (only methods)***. So if you need to do that to track shared state among instances, then you end up going back to the ugly `.prototype` syntax, like this:
 
 ```js
 class C {
@@ -147,9 +147,9 @@ c1.id(); // TypeError -- `c1.id` is now the string "c1"
 
 There's also some very subtle nuanced issues with how `super` works. You might assume that `super` would be bound in an analogous way to how `this` gets bound (see Chapter 2), which is that `super` would always be bound to one level higher than whatever the current method's position in the `[[Prototype]]` chain is.
 
-However, for performance reasons (`this` binding is already expensive), `super` is not bound dynamically. It's bound sort of "statically", as declaration time. No big deal, right?
+However, for performance reasons (`this` binding is already expensive), ***`super` is not bound dynamically. It's bound sort of "statically", as declaration time***. No big deal, right?
 
-Ehh... maybe, maybe not. If you, like most JS devs, start assigning functions around to different objects (which came from `class` definitions), in various different ways, you probably won't be very aware that in all those cases, the `super` mechanism under the covers is having to be re-bound each time.
+***Ehh... maybe, maybe not. If you, like most JS devs, start assigning functions around to different objects (which came from `class` definitions), in various different ways, you probably won't be very aware that in all those cases, the `super` mechanism under the covers is having to be re-bound each time***.
 
 And depending on what sorts of syntactic approaches you take to these assignments, there may very well be cases where the `super` can't be properly bound (at least, not where you suspect), so you may (at time of writing, TC39 discussion is ongoing on the topic) have to manually bind `super` with `toMethod(..)` (kinda like you have to do `bind(..)` for `this` -- see Chapter 2).
 
