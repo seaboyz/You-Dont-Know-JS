@@ -86,7 +86,7 @@ So what's the seventh string value that `typeof` can return?
 typeof function a(){ /* .. */ } === "function"; // true
 ```
 
-It's easy to think that `function` would be a top-level built-in type in JS, especially given this behavior of the `typeof` operator. However, if you read the spec, you'll see it's actually a "subtype" of object. Specifically, a function is referred to as a "callable object" -- an object that has an internal `[[Call]]` property that allows it to be invoked.
+It's easy to think that `function` would be a top-level built-in type in JS, especially given this behavior of the `typeof` operator. However, if you read the spec, you'll see it's actually a "subtype" of object. Specifically, ***a function is referred to as a "callable object" -- an object that has an internal `[[Call]]` property that allows it to be invoked***.
 
 The fact that functions are actually objects is quite useful. Most importantly, they can have properties. For example:
 
@@ -114,13 +114,13 @@ Nope, just objects. It's most appropriate to think of them also as a "subtype" o
 
 ## Values as Types
 
-In JavaScript, variables don't have types -- **values have types**. Variables can hold any value, at any time.
+In JavaScript, ***variables don't have types*** -- **values have types**. Variables can hold any value, at any time.
 
-Another way to think about JS types is that JS doesn't have "type enforcement," in that the engine doesn't insist that a *variable* always holds values of the *same initial type* that it starts out with. A variable can, in one assignment statement, hold a `string`, and in the next hold a `number`, and so on.
+Another way to think about JS types is that JS doesn't have "type enforcement," in that the engine doesn't insist that a *variable* always holds values of the *same initial type* that it starts out with. ***A variable can, in one assignment statement, hold a `string`, and in the next hold a `number`, and so on***.
 
 The *value* `42` has an intrinsic type of `number`, and its *type* cannot be changed. Another value, like `"42"` with the `string` type, can be created *from* the `number` value `42` through a process called **coercion** (see Chapter 4).
 
-If you use `typeof` against a variable, it's not asking "what's the type of the variable?" as it may seem, since JS variables have no types. Instead, it's asking "what's the type of the value *in* the variable?"
+If you use `typeof` against a variable, it's not asking "what's the type of the variable?" as it may seem, since JS variables have no types. Instead, it's asking "***what's the type of the value *in* the variable***?"
 
 ```js
 var a = 42;
@@ -130,7 +130,7 @@ a = true;
 typeof a; // "boolean"
 ```
 
-The `typeof` operator always returns a string. So:
+***The `typeof` operator always returns a string***. So:
 
 ```js
 typeof typeof 42; // "string"
@@ -140,7 +140,7 @@ The first `typeof 42` returns `"number"`, and `typeof "number"` is `"string"`.
 
 ### `undefined` vs "undeclared"
 
-Variables that have no value *currently*, actually have the `undefined` value. Calling `typeof` against such variables will return `"undefined"`:
+***Variables that have no value *currently*, actually have the `undefined` value***. Calling `typeof` against such variables will return `"undefined"`:
 
 ```js
 var a;
@@ -182,7 +182,7 @@ typeof a; // "undefined"
 typeof b; // "undefined"
 ```
 
-The `typeof` operator returns `"undefined"` even for "undeclared" (or "not defined") variables. Notice that there was no error thrown when we executed `typeof b`, even though `b` is an undeclared variable. This is a special safety guard in the behavior of `typeof`.
+***The `typeof` operator returns `"undefined"` even for "undeclared" (or "not defined") variables***. Notice that there was no error thrown when we executed `typeof b`, even though `b` is an undeclared variable. This is a special safety guard in the behavior of `typeof`.
 
 Similar to above, it would have been nice if `typeof` used with an undeclared variable returned "undeclared" instead of conflating the result value with the different "undefined" case.
 
