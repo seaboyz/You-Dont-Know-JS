@@ -255,7 +255,7 @@ For example, `true` becomes `1` and `false` becomes `0`. `undefined` becomes `Na
 
 **Note:** The differences between `number` literal grammar and `ToNumber` on a `string` value are subtle and highly nuanced, and thus will not be covered further here. Consult section 9.3.1 of the ES5 spec for more information.
 
-Objects (and arrays) will first be converted to their primitive value equivalent, and the resulting value (if a primitive but not already a `number`) is coerced to a `number` according to the `ToNumber` rules just mentioned.
+***Objects (and arrays) will first be converted to their primitive value equivalent, and the resulting value (if a primitive but not already a `number`) is coerced to a `number` according to the `ToNumber` rules just mentioned***.
 
 To convert to this primitive value equivalent, the `ToPrimitive` abstract operation (ES5 spec, section 9.1) will consult the value (using the internal `DefaultValue` operation -- ES5 spec, section 8.12.8) in question to see if it has a `valueOf()` method. If `valueOf()` is available and it returns a primitive value, *that* value is used for the coercion. If not, but `toString()` is available, it will provide the value for the coercion.
 
@@ -305,8 +305,9 @@ But that's not the end of the story. We need to discuss how values other than th
 
 All of JavaScript's values can be divided into two categories:
 
-1. values that will become `false` if coerced to `boolean`
-2. everything else (which will obviously become `true`)
+1. ***values that will become `false` if coerced to `boolean`***
+
+2. ***everything else (which will obviously become `true`)***
 
 I'm not just being facetious. The JS spec defines a specific, narrow list of values that will coerce to `false` when coerced to a `boolean` value.
 
