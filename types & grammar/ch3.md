@@ -52,7 +52,7 @@ The output of that statement varies depending on your browser, as developer cons
 
 **Note:** At the time of writing, the latest Chrome prints something like this: `String {0: "a", 1: "b", 2: "c", length: 3, [[PrimitiveValue]]: "abc"}`. But older versions of Chrome used to just print this: `String {0: "a", 1: "b", 2: "c"}`. The latest Firefox currently prints `String ["a","b","c"]`, but used to print `"abc"` in italics, which was clickable to open the object inspector. Of course, these results are subject to rapid change and your experience may vary.
 
-The point is, `new String("abc")` creates a string wrapper object around `"abc"`, not just the primitive `"abc"` value itself.
+***The point is, `new String("abc")` creates a string wrapper object around `"abc"`, not just the primitive `"abc"` value itself***.
 
 ## Internal `[[Class]]`
 
@@ -73,7 +73,7 @@ Object.prototype.toString.call( null );			// "[object Null]"
 Object.prototype.toString.call( undefined );	// "[object Undefined]"
 ```
 
-You'll note that there are no `Null()` or `Undefined()` native constructors, but nevertheless the `"Null"` and `"Undefined"` are the internal `[[Class]]` values exposed.
+You'll note that there are no `Null()` or `Undefined()` native constructors, but nevertheless ***the `"Null"` and `"Undefined"` are the internal `[[Class]]` values exposed***.
 
 But for the other simple primitives like `string`, `number`, and `boolean`, another behavior actually kicks in, which is usually called "boxing" (see "Boxing Wrappers" section next):
 
@@ -89,7 +89,7 @@ In this snippet, each of the simple primitives are automatically boxed by their 
 
 ## Boxing Wrappers
 
-These object wrappers serve a very important purpose. Primitive values don't have properties or methods, so to access `.length` or `.toString()` you need an object wrapper around the value. Thankfully, JS will automatically *box* (aka wrap) the primitive value to fulfill such accesses.
+These object wrappers serve a very important purpose. Primitive values don't have properties or methods, so ***to access `.length` or `.toString()` you need an object wrapper around the value. Thankfully, JS will automatically *box* (aka wrap) the primitive value to fulfill such accesses.***
 
 ```js
 var a = "abc";
@@ -102,7 +102,9 @@ So, if you're going to be accessing these properties/methods on your string valu
 
 But it turns out that's a bad idea. Browsers long ago performance-optimized the common cases like `.length`, which means your program will *actually go slower* if you try to "preoptimize" by directly using the object form (which isn't on the optimized path).
 
-In general, there's basically no reason to use the object form directly. It's better to just let the boxing happen implicitly where necessary. In other words, never do things like `new String("abc")`, `new Number(42)`, etc -- always prefer using the literal primitive values `"abc"` and `42`.
+In general, there's basically no reason to use the object form directly. It's better to just let the boxing happen implicitly where necessary. In other words, 
+
+***never do things like `new String("abc")`, `new Number(42)`, etc -- always prefer using the literal primitive values `"abc"` and `42`***.
 
 ### Object Wrapper Gotchas
 
@@ -118,7 +120,7 @@ if (!a) {
 }
 ```
 
-The problem is that you've created an object wrapper around the `false` value, but objects themselves are "truthy" (see Chapter 4), so using the object behaves oppositely to using the underlying `false` value itself, which is quite contrary to normal expectation.
+The problem is that ***you've created an object wrapper around the `false` value, but objects themselves are "truthy" (see Chapter 4)***, so using the object behaves oppositely to using the underlying `false` value itself, which is quite contrary to normal expectation.
 
 If you want to manually box a primitive value, you can use the `Object(..)` function (no `new` keyword):
 
@@ -182,7 +184,11 @@ b; // [1, 2, 3]
 
 **Note:** The `Array(..)` constructor does not require the `new` keyword in front of it. If you omit it, it will behave as if you have used it anyway. So `Array(1,2,3)` is the same outcome as `new Array(1,2,3)`.
 
-The `Array` constructor has a special form where if only one `number` argument is passed, instead of providing that value as *contents* of the array, it's taken as a length to "presize the array" (well, sorta).
+***The `Array` constructor has a special form where if only one `number` argument is passed, instead of providing that value as *contents* of the array, it's taken as a length to "presize the array" (well, sorta)***.
+
+```js
+var d = new Array(4);	//[ , , , ]
+```
 
 This is a terrible idea. Firstly, you can trip over that form accidentally, as it's easy to forget.
 
@@ -285,7 +291,7 @@ In other words, it ends up calling `Array(..)` basically like this: `Array(undef
 
 While `Array.apply( null, { length: 3 } )` is a strange and verbose way to create an array filled with `undefined` values, it's **vastly** better and more reliable than what you get with the footgun'ish `Array(3)` empty slots.
 
-Bottom line: **never ever, under any circumstances**, should you intentionally create and use these exotic empty-slot arrays. Just don't do it. They're nuts.
+Bottom line: ***never ever, under any circumstances, should you intentionally create and use these exotic empty-slot arrays. Just don't do it. They're nuts***.
 
 ### `Object(..)`, `Function(..)`, and `RegExp(..)`
 
@@ -311,7 +317,7 @@ There's practically no reason to ever use the `new Object()` constructor form, e
 
 The `Function` constructor is helpful only in the rarest of cases, where you need to dynamically define a function's parameters and/or its function body. **Do not just treat `Function(..)` as an alternate form of `eval(..)`.** You will almost never need to dynamically define a function in this way.
 
-Regular expressions defined in the literal form (`/^a*b+/g`) are strongly preferred, not just for ease of syntax but for performance reasons -- the JS engine precompiles and caches them before code execution. Unlike the other constructor forms we've seen so far, `RegExp(..)` has some reasonable utility: to dynamically define the pattern for a regular expression.
+***Regular expressions defined in the literal form (`/^a*b+/g`) are strongly preferred, not just for ease of syntax but for performance reasons -- the JS engine precompiles and caches them before code execution***. Unlike the other constructor forms we've seen so far, `RegExp(..)` has some reasonable utility: to dynamically define the pattern for a regular expression.
 
 ```js
 var name = "Kyle";
@@ -326,9 +332,9 @@ This kind of scenario legitimately occurs in JS programs from time to time, so y
 
 The `Date(..)` and `Error(..)` native constructors are much more useful than the other natives, because there is no literal form for either.
 
-To create a date object value, you must use `new Date()`. The `Date(..)` constructor accepts optional arguments to specify the date/time to use, but if omitted, the current date/time is assumed.
+***To create a date object value, you must use `new Date()`. The `Date(..)` constructor accepts optional arguments to specify the date/time to use, but if omitted, the current date/time is assumed***.
 
-By far the most common reason you construct a date object is to get the current timestamp value (a signed integer number of milliseconds since Jan 1, 1970). You can do this by calling `getTime()` on a date object instance.
+By far the most common reason you construct a date object is to get the current timestamp value (***a signed integer number of milliseconds since Jan 1, 1970***). You can do this by calling `getTime()` on a date object instance.
 
 But an even easier way is to just call the static helper function defined as of ES5: `Date.now()`. And to polyfill that for pre-ES5 is pretty easy:
 
@@ -340,11 +346,11 @@ if (!Date.now) {
 }
 ```
 
-**Note:** If you call `Date()` without `new`, you'll get back a string representation of the date/time at that moment. The exact form of this representation is not specified in the language spec, though browsers tend to agree on something close to: `"Fri Jul 18 2014 00:31:02 GMT-0500 (CDT)"`.
+**Note:** ***If you call `Date()` without `new`, you'll get back a string representation of the date/time at that moment***. The exact form of this representation is not specified in the language spec, though browsers tend to agree on something close to: `"Fri Jul 18 2014 00:31:02 GMT-0500 (CDT)"`.
 
 The `Error(..)` constructor (much like `Array()` above) behaves the same with the `new` keyword present or omitted.
 
-The main reason you'd want to create an error object is that it captures the current execution stack context into the object (in most JS engines, revealed as a read-only `.stack` property once constructed). This stack context includes the function call-stack and the line-number where the error object was created, which makes debugging that error much easier.
+***The main reason you'd want to create an error object is that it captures the current execution stack context into the object*** (in most JS engines, revealed as a read-only `.stack` property once constructed). This stack context includes the function call-stack and the line-number where the error object was created, which makes debugging that error much easier.
 
 You would typically use such an error object with the `throw` operator:
 
@@ -363,9 +369,9 @@ Error object instances generally have at least a `message` property, and sometim
 
 ### `Symbol(..)`
 
-New as of ES6, an additional primitive value type has been added, called "Symbol". Symbols are special "unique" (not strictly guaranteed!) values that can be used as properties on objects with little fear of any collision. They're primarily designed for special built-in behaviors of ES6 constructs, but you can also define your own symbols.
+New as of ES6, an additional primitive value type has been added, called "Symbol". ***Symbols are special "unique" (not strictly guaranteed!) values that can be used as properties on objects with little fear of any collision***. They're primarily designed for special built-in behaviors of ES6 constructs, but you can also define your own symbols.
 
-Symbols can be used as property names, but you cannot see or access the actual value of a symbol from your program, nor from the developer console. If you evaluate a symbol in the developer console, what's shown looks like `Symbol(Symbol.create)`, for example.
+***Symbols can be used as property names, but you cannot see or access the actual value of a symbol from your program, nor from the developer console. If you evaluate a symbol in the developer console, what's shown looks like `Symbol(Symbol.create)`, for example***.
 
 There are several predefined symbols in ES6, accessed as static properties of the `Symbol` function object, like `Symbol.create`, `Symbol.iterator`, etc. To use them, do something like:
 
@@ -408,7 +414,7 @@ For example, all string objects, and by extension (via boxing) `string` primitiv
 * `String#toUpperCase()` and `String#toLowerCase()`: create a new string that's converted to either uppercase or lowercase
 * `String#trim()`: create a new string that's stripped of any trailing or leading whitespace
 
-None of the methods modify the string *in place*. Modifications (like case conversion or trimming) create a new value from the existing value.
+***None of the methods modify the string *in place*. Modifications (like case conversion or trimming) create a new value from the existing value***.
 
 By virtue of prototype delegation (see the *this & Object Prototypes* title in this series), any string value can access these methods:
 
@@ -444,7 +450,7 @@ Array.prototype;					// [1,2,3]
 Array.prototype.length = 0;
 ```
 
-As you can see, `Function.prototype` is a function, `RegExp.prototype` is a regular expression, and `Array.prototype` is an array. Interesting and cool, huh?
+***As you can see, `Function.prototype` is a function, `RegExp.prototype` is a regular expression, and `Array.prototype` is an array. Interesting and cool, huh?***
 
 #### Prototypes As Defaults
 
