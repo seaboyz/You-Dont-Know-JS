@@ -1156,7 +1156,7 @@ It's quite likely that you have seen the `||` ("logical or") and `&&` ("logical 
 
 There's some very little known, but very important, nuance here.
 
-In fact, I would argue these operators shouldn't even be called "logical ___ operators", as that name is incomplete in describing what they do. If I were to give them a more accurate (if more clumsy) name, I'd call them "selector operators," or more completely, "operand selector operators."
+In fact, I would argue these operators shouldn't even be called "logical ___ operators", as that name is incomplete in describing what they do. If I were to give them a more accurate (if more clumsy) name, I'd call them "selector operators," or more completely, "***operand selector operators***."
 
 Why? Because they don't actually result in a *logic* value (aka `boolean`) in JavaScript, as they do in some other languages.
 
